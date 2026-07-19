@@ -17,8 +17,7 @@ menu = st.selectbox(
     ["1. Add New Student Profile",
      "2. Enter/Record Assignment Score", 
      "3. View Classroom Statistical Summary",
-     "4. Search and Generate Individual Report Card",
-     "5. Shutdown Analytics Engine"]
+     "4. Search and Generate Individual Report Card"]
 )
 
 if menu == "1. Add New Student Profile":
@@ -91,16 +90,6 @@ elif menu == "4. Search and Generate Individual Report Card":
             )
         else:
             st.info(f"No scores found for {name}.")
-
-elif menu == "5. Shutdown Analytics Engine":
-    st.subheader("SHUTDOWN ENGINE")
-    st.error("The Analytics Engine session has been paused. Select another protocol or refresh the page to restart operations.")
-    st.stop()
-
-elif menu == "5. Shutdown Analytics Engine":
-    st.subheader("SHUTDOWN ENGINE")
-    st.error("The Analytics Engine session has been paused. Select another protocol or refresh the page to restart operations.")
-    st.stop()
     
 st.write("---")
 st.caption("Built by Batool Fatima | BCA 2026-29 | Akshara Degree College")
