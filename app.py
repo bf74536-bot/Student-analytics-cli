@@ -92,9 +92,13 @@ elif menu == "4. Search and Generate Individual Report Card":
         else:
             st.info(f"No scores found for {name}.")
 
+elif menu == "5. Shutdown Analytics Engine": 
+    st.subheader("SHUTDOWN ENGINE")
+    st.error("The Analytics Engine session has been paused. Select another protocol or refresh the page to restart operations.")
 elif menu == "5. Shutdown Analytics Engine":
     st.subheader("SHUTDOWN ENGINE")
     st.error("The Analytics Engine session has been paused. Select another protocol or refresh the page to restart operations.")
-
+    st.stop()
+    
 st.write("---")
 st.caption("Built by Batool Fatima | BCA 2026-29 | Akshara Degree College")
