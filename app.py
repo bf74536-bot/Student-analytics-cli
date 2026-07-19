@@ -62,13 +62,33 @@ elif menu == "4. Search and Generate Individual Report Card":
         name = st.selectbox("Select Student to View Report", list(st.session_state.students_db.keys()))
         scores = st.session_state.students_db.get(name, [])
         if scores:
-            st.write(f"**Student Name:** {name}")
+            st.write(f"### **Student Name:** {name}")
+            
+            # Formatted text string to hold file contents for downloading
+            report_text = f"STUDENT REPORT CARD\n===================\nName: {name}\n\n"
+            
             for i, score in enumerate(scores, 1):
-                st.write(f"Assignment {i}: {score} ({get_letter_grade(score)})")
+                grade = get_letter_grade(score)
+                st.write(f"**Assignment {i}:** {score} / 100 ({grade})")
+                st.progress(score / 100) # Visual progress tracking bar
+                report_text += f"Assignment {i}: {score}/100 ({grade})\n"
             
             avg_score = sum(scores) / len(scores)
-            st.write(f"**Overall Average Score:** {round(avg_score, 2)}")
-            st.write(f"**Final Grade:** {get_letter_grade(avg_score)}")
+            final_grade = get_letter_grade(avg_score)
+            
+            st.markdown("---")
+            st.write(f"📈 **Overall Average Score:** {round(avg_score, 2)}")
+            st.write(f"🎓 **Final Grade:** {final_grade}")
+            
+            report_text += f"\n-------------------\nOverall Average: {round(avg_score, 2)}\nFinal Grade: {final_grade}"
+            
+            # Download button integration
+            st.download_button(
+                label="📥 Download Report Card (.txt)",
+                data=report_text,
+                file_name=f"{name.replace(' ', '_')}_report.txt",
+                mime="text/plain"
+            )
         else:
             st.info(f"No scores found for {name}.")
 
@@ -78,4 +98,3 @@ elif menu == "5. Shutdown Analytics Engine":
 
 st.write("---")
 st.caption("Built by Batool Fatima | BCA 2026-29 | Akshara Degree College")
-
